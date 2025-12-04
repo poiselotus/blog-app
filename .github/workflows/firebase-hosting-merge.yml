@@ -6,19 +6,20 @@ on:
   push:
     branches:
       - main
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      # 👇 Install dependencies
+
+      # Install project dependencies
       - run: npm install
-      
-      # 👇 Build Vite project
+
+      # Build Vite app
       - run: npm run build
 
-      # 👇 Deploy to Firebase
+      # Deploy to Firebase Hosting
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
